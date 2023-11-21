@@ -7,7 +7,6 @@ import { fileURLToPath } from 'url';
 import cors from 'cors';
 import pngToIco from 'png-to-ico';*/
 
-
 const express = require("express");
 const multer = require("multer");
 const sharp = require("sharp");
@@ -22,11 +21,7 @@ const app = express();
 const upload = multer({ dest: "uploads/" });
 
 app.use(express.static(path.join(__dirname, "build")));
-  app.use(
-    cors({
-      origin: "https://image-converter-frontend.vercel.app/",
-    })
-  );
+app.use(cors());
 
 app.post("/convert", upload.single("image"), async (req, res) => {
   const format = req.body.format;
